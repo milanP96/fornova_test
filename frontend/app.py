@@ -52,8 +52,8 @@ def search():
             'search.html',
             hotels=res['res'],
             page=page,
-            next=f"/browse?page={page + 1}",
-            prev=f"/browse?page={page - 1}",
+            next=f"/search?text={text}&page={page + 1}",
+            prev=f"/search?text={text}&page={page - 1}",
             has_more=res['has_more'],
             text=text
         )
