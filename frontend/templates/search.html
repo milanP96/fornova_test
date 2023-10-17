@@ -1,81 +1,95 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="px-4 sm:px-6 lg:px-8 h-screen pt-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-gray-900">Hotels</h1>
-      <p class="mt-2 text-sm text-gray-700">Search hotels</p>
-        <div>
-  <label for="search" class="block text-sm font-medium leading-6 text-gray-900">Quick search</label>
-  <div class="relative mt-2 flex items-center">
-    <input value="{{ text }}" type="text" name="search" id="search" class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-    <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
-      <kbd class="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">Enter</kbd>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
-  <div class="mt-8 flow-root">
-    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <table class="min-w-full divide-y divide-gray-300">
-          <thead>
-            <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Country</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200">
-          {% for hotel in hotels %}
-            <tr>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ hotel.name }}</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ hotel.city }}</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ hotel.country }}</td>
-            </tr>
+        <div class="sm:flex sm:items-center">
+            <div class="sm:flex-auto">
+                <h1 class="text-base font-semibold leading-6 text-gray-900">Hotels</h1>
+                <p class="mt-2 text-sm text-gray-700">Search hotels</p>
+                <div>
+                    <label for="search" class="block text-sm font-medium leading-6 text-gray-900">Quick search</label>
+                    <div class="relative mt-2 flex items-center">
+                        <input value="{{ text }}" type="text" name="search" id="search"
+                               class="block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="absolute inset-y-0 right-0 flex py-1.5 pr-1.5">
+                            <kbd class="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">Enter</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 flow-root">
+            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <table class="min-w-full divide-y divide-gray-300">
+                        <thead>
+                        <tr>
+                            <th scope="col"
+                                class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name
+                            </th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">City</th>
+                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Country
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                        {% for hotel in hotels %}
+                            <tr>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ hotel.name }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ hotel.city }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ hotel.country }}</td>
+                            </tr>
 
-            {% endfor %}
-          </tbody>
-        </table>
-      <nav class="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
-  <div class="-mt-px flex w-0 flex-1">
-      {% if page > 1 %}
-        <a href="{{ prev }}" class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-          <svg class="mr-3 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd" />
-          </svg>
-          Previous
-        </a>
-      {% endif %}
-  </div>
-  <div class="hidden md:-mt-px md:flex">
-        <a href="#" class="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600" aria-current="page">{{ page }}</a>
-  </div>
-  <div class="-mt-px flex w-0 flex-1 justify-end">
-      {% if has_more %}
-        <a href="{{ next }}" class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
-          Next
-          <svg class="ml-3 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      {% endif %}
-  </div>
-</nav>
-      </div>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <nav class="flex items-center justify-between border-t border-gray-200 px-4 sm:px-0">
+                        <div class="-mt-px flex w-0 flex-1">
+                            {% if page > 1 %}
+                                <a href="{{ prev }}"
+                                   class="inline-flex items-center border-t-2 border-transparent pr-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                    <svg class="mr-3 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                         aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                    Previous
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="hidden md:-mt-px md:flex">
+                            <a href="#"
+                               class="inline-flex items-center border-t-2 border-indigo-500 px-4 pt-4 text-sm font-medium text-indigo-600"
+                               aria-current="page">{{ page }}</a>
+                        </div>
+                        <div class="-mt-px flex w-0 flex-1 justify-end">
+                            {% if has_more %}
+                                <a href="{{ next }}"
+                                   class="inline-flex items-center border-t-2 border-transparent pl-1 pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                                    Next
+                                    <svg class="ml-3 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                         aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                              d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<script>
-var input = document.getElementById("search");
+    <script>
+        var input = document.getElementById("search");
 
-// Execute a function when the user presses a key on the keyboard
-input.addEventListener("keypress", function(event) {
-  // If the user presses the "Enter" key on the keyboard
-  if (event.key === "Enter") {
-    window.location.href = `/search?text=${input.value}`;
-  }
-});
-</script>
+        // Execute a function when the user presses a key on the keyboard
+        input.addEventListener("keypress", function (event) {
+            // If the user presses the "Enter" key on the keyboard
+            if (event.key === "Enter") {
+                window.location.href = `/search?text=${input.value}`;
+            }
+        });
+    </script>
 {% endblock %}

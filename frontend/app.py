@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 api_url = "http://localhost:8000/"
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
