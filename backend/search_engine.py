@@ -35,12 +35,6 @@ class SearchEngine:
 
         return res, has_more
 
-    @staticmethod
-    def filter_df(df, search_string):
-        filter_condition = df.applymap(lambda cell: isinstance(cell, str) and search_string in cell)
-        filtered_df = df[filter_condition.any(axis=1)]
-        return filtered_df
-
     def get_all(self, per_page: int, page: int):
         temp = pd.read_csv(self.source, iterator=True, chunksize=self.CHUNK_SIZE)
 
@@ -50,3 +44,9 @@ class SearchEngine:
         temp = pd.read_csv(self.source, iterator=True, chunksize=self.CHUNK_SIZE)
 
         return self.chunk_from_reader_to_json(temp, per_page=per_page, page=page, filter_text=text)
+
+    @staticmethod
+    def filter_df(df, search_string):
+        filter_condition = df.applymap(lambda cell: isinstance(cell, str) and search_string in cell)
+        filtered_df = df[filter_condition.any(axis=1)]
+        return filtered_df
